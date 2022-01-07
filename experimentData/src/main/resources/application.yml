@@ -1,0 +1,46 @@
+server:
+  port: 8020
+spring:
+  application:
+    name: experimentData
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource #数据源
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.0.251/experiment_data?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8&allowMultiQueries=true
+    username: root
+    password: ytylA412,
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+#  redis:
+#    host: 192.168.0.251
+#    port: 6379
+#    database: 1
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 215MB
+mybatis:
+  type-aliases-package: cn.waifutong.experimentData.entity
+  mapper-locations: classpath:mapping/*.xml
+  configuration:
+    call-setters-on-nulls: true #解决返回值为map时，null值字段不返回的问题
+file:
+  upload-dir:D:/demouploadssssss
+# 打印sql
+logging:
+  level:
+    cn.waifutong.supplyChain: debug
+    root: info
+
+---
+
+spring:
+  profiles:
+  - test
+
+
+server:
+  port: 8022
+
